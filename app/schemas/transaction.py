@@ -1,5 +1,5 @@
 from pydantic import BaseModel
-from typing import Optional
+from typing import Optional, List
 
 class TransactionRequest(BaseModel):
     TransactionAmt: float
@@ -16,3 +16,10 @@ class TransactionRequest(BaseModel):
 class TransactionResponse(BaseModel):
     fraud_score: float
     decision: str
+
+class ExplainResponse(BaseModel):
+    fraud_score: float
+    decision: str
+    top_reasons: List[str]
+#Why Pydantic:
+#Pydantic validates incoming data automatically. If someone sends a request with TransactionAmt = "hello" instead of a number, Pydantic rejects it immediately with a clear error message before it ever reaches your model.
