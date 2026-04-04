@@ -1,6 +1,7 @@
 # Byte-compiled / optimized / DLL files
 data/
-models/
+models/*.json
+models/*.pkl
 __pycache__/
 *.py[codz]
 *$py.class
