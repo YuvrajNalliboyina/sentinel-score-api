@@ -1,7 +1,7 @@
 # Byte-compiled / optimized / DLL files
 data/
-models/
-models/*.pkl
+models/xgboost_best.json
+models/xgboost_best.pkl
 __pycache__/
 *.py[codz]
 *$py.class
