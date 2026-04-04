@@ -1,3 +1,5 @@
+#v2 deployment
+
 from fastapi import FastAPI
 from contextlib import asynccontextmanager
 from app.routers import scoring
