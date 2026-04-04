@@ -2,10 +2,10 @@ import sqlite3
 from pathlib import Path
 from datetime import datetime
 
-DB_PATH = Path(__file__).parent.parent / "data" / "predictions.db"
+DB_PATH = Path(__file__).parent.parent / "predictions.db"
 
 def init_db():
-    """Create the predictions table if it doesn't exist."""
+    DB_PATH.parent.mkdir(parents=True, exist_ok=True)
     conn = sqlite3.connect(str(DB_PATH))
     cursor = conn.cursor()
     cursor.execute("""
@@ -21,9 +21,8 @@ def init_db():
     conn.commit()
     conn.close()
 
-def log_prediction(transaction_amt: float, fraud_score: float, 
+def log_prediction(transaction_amt: float, fraud_score: float,
                    decision: str, top_reasons: str = None):
-    """Log a prediction to the database."""
     conn = sqlite3.connect(str(DB_PATH))
     cursor = conn.cursor()
     cursor.execute("""
@@ -34,7 +33,6 @@ def log_prediction(transaction_amt: float, fraud_score: float,
     conn.close()
 
 def get_recent_predictions(limit: int = 100) -> list:
-    """Get the most recent predictions."""
     conn = sqlite3.connect(str(DB_PATH))
     cursor = conn.cursor()
     cursor.execute("""

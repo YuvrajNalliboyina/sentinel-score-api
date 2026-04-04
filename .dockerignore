@@ -1,0 +1,10 @@
+data/
+notebooks/
+outputs/
+mlruns/
+models/*.pkl
+__pycache__/
+*.pyc
+.git/
+.gitignore
+*.ipynb

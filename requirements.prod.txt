@@ -1,0 +1,16 @@
+fastapi
+uvicorn
+pydantic
+xgboost==1.7.6
+scikit-learn
+pandas
+numpy
+shap
+imbalanced-learn
+streamlit
+plotly
+requests
+evidently==0.4.16
+optuna
+python-multipart
+sqlalchemy
