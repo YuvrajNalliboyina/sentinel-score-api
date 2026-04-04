@@ -5,7 +5,7 @@ import shap
 import json
 from pathlib import Path
 
-MODEL_PATH = Path(__file__).parent.parent.parent / "models" / "xgboost_best.json"
+MODEL_PATH = Path(__file__).parent.parent / "xgboost_best.json"
 FEATURES_PATH = Path(__file__).parent.parent / "feature_columns.json"
 
 # Load model once
