@@ -13,7 +13,8 @@ st.set_page_config(
 )
 
 # API URL — local for now, Railway URL in Week 4
-API_URL = "http://127.0.0.1:8000"
+#API_URL = "http://127.0.0.1:8000"
+API_URL = "https://sentinelscore-api-production.up.railway.app"
 
 DB_PATH = Path(__file__).parent / "data" / "predictions.db"
 
