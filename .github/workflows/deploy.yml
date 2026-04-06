@@ -5,9 +5,19 @@ on:
     branches: [main]
 
 jobs:
-  hello:
+  test:
     runs-on: ubuntu-latest
     steps:
-      - name: Hello World
-        run: echo "Pipeline is working!"
-        
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies
+        run: pip install -r requirements.prod.txt
+
+      - name: Run tests
+        run: pytest tests/test_api.py -v
