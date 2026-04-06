@@ -20,6 +20,8 @@ jobs:
         run: |
          pip install -r requirements.prod.txt
          pip install pytest httpx
+      - name: Initialize database
+        run: python -c "from app.database import init_db; init_db()"
 
       - name: Run tests
         run: pytest tests/test_api.py -v
