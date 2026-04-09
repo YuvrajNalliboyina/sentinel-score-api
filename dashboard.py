@@ -1,5 +1,6 @@
 import streamlit as st
 import pandas as pd
+import os
 import sqlite3
 import requests
 from pathlib import Path
@@ -19,13 +20,22 @@ API_URL = "https://sentinelscore-api-production.up.railway.app"
 DB_PATH = Path(__file__).parent / "data" / "predictions.db"
 
 def load_predictions():
-    """Load predictions from SQLite."""
+    """Load predictions from PostgreSQL or SQLite."""
     try:
-        conn = sqlite3.connect(str(DB_PATH))
+        database_url = os.environ.get('DATABASE_URL')
+        if database_url:
+            import psycopg2
+            conn = psycopg2.connect(database_url)
+        else:
+            import sqlite3
+            from pathlib import Path
+            db_path = Path(__file__).parent / "data" / "predictions.db"
+            conn = sqlite3.connect(str(db_path))
+        
         df = pd.read_sql_query("""
             SELECT timestamp, transaction_amt, fraud_score, decision
             FROM predictions
-            ORDER BY timestamp DESC
+            ORDER BY id DESC
         """, conn)
         conn.close()
         return df
