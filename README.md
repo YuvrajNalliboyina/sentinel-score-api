@@ -7,7 +7,7 @@
 > A production-grade fraud detection system that scores financial transactions in real-time, explains every decision via SHAP, and deploys automatically via CI/CD.
 
 ## 🔴 Live Demo
-- **API:** https://sentinelscore-api-production.up.railway.app/docs
+- **API:** https://sentinelscore-api-production-8533.up.railway.app/docs
 - **Dashboard:** https://huggingface.co/spaces/YuvrajN/sentinelscore-dahboard
 
 ## 🏗️ Architecture
@@ -25,7 +25,7 @@ SQLite Logging → Streamlit Dashboard
 
 ## ⚡ Quick Test
 ```bash
-curl -X POST https://sentinelscore-api-production.up.railway.app/api/v1/score \
+curl -X POST https://sentinelscore-api-production-8533.up.railway.app/api/v1/score \
   -H "Content-Type: application/json" \
   -d '{"TransactionAmt": 1500, "amt_zscore": 4.5, "txn_count_1h": 12}'
 ```
