@@ -17,16 +17,28 @@ def get_connection():
 def init_db():
     conn, ph = get_connection()
     cursor = conn.cursor()
-    cursor.execute("""
-        CREATE TABLE IF NOT EXISTS predictions (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            timestamp TEXT,
-            transaction_amt REAL,
-            fraud_score REAL,
-            decision TEXT,
-            top_reasons TEXT
-        )
-    """)
+    if DATABASE_URL:
+        cursor.execute("""
+            CREATE TABLE IF NOT EXISTS predictions (
+                id SERIAL PRIMARY KEY,
+                timestamp TEXT,
+                transaction_amt REAL,
+                fraud_score REAL,
+                decision TEXT,
+                top_reasons TEXT
+            )
+        """)
+    else:
+        cursor.execute("""
+            CREATE TABLE IF NOT EXISTS predictions (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                timestamp TEXT,
+                transaction_amt REAL,
+                fraud_score REAL,
+                decision TEXT,
+                top_reasons TEXT
+            )
+        """)
     conn.commit()
     conn.close()
 
